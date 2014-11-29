@@ -1,0 +1,96 @@
+# -*- coding: utf-8 -*-
+"""
+This module simulates the environment extending the environment provided by 
+``simpy``.\n
+It also collects the statistics.
+"""
+import simpy
+import logging
+import SimPyNet
+
+class Environment(simpy.Environment):
+    
+    def __init__( self, initial_time=0 , interval_collection = 1):
+        self.interval_collection = interval_collection
+        self.items_stat = {}
+        self.statistics={}
+        simpy.Environment.__init__( self , initial_time )
+    
+
+    
+        
+    def add_collector_statistics( self , stat_name , collector ):#, interval_collection=1 ):
+      
+        
+        self.items_stat[stat_name] = collector #[ collector, interval_collection ]
+        self.statistics[stat_name]=[0,0] # for every stat will registers: time, value
+        
+        return self.items_stat
+        
+    
+    def _statistics( self  ):#, name_stat ):#, collector , interval ):
+        """
+        E.get_statistic( statitics_name, collector_interval)
+        Returns a list of collected data of the item. 
+        """
+        for name_stat, collector in self.items_stat.items():
+            self.statistics[name_stat].append( [self.now , collector()] ) # 
+
+
+    def get_statistics( self , stat_name ):
+        
+        return self.statistics[stat_name]    
+        
+    def result(self ):
+       
+        tab=SimPyNet.PrettyTable(['Name_stat', 'Time', 'Value'], sortby='Time')
+        
+        tab.float_format = '%8.6f'
+        for name_stat, values in self.statistics.items():
+            for v in values :
+                tab.add_row(['%s'%name_stat,
+                             '%8.6f'% v[0],
+                             '%8.6f'% v[1]])
+            
+        print tab
+        
+    def _stats_process( self ):
+            
+        while(True):
+            
+                self._statistics( )
+                    
+                if self.peek() == float('inf'):
+                    break
+                yield self.timeout( self.interval_collection )
+        
+        for name, values in self.statistics.items():
+            for v in values :
+                self.lgr.info('time: %s  collector: %s  value: %f'%(v[0], name ,v[1] ))
+
+                
+                 
+    def run( self ,  logging_level=logging.DEBUG, until=None ):
+        
+         
+        self.process(self._stats_process())  # process collects statistics
+    
+        self.lgr = logging.getLogger(SimPyNet.__LOGNAME__)
+        self.lgr.setLevel(logging_level)
+        
+        fh = logging.FileHandler('log.log', mode='a')
+        #fh.setLevel(logging.DEBUG)
+        #fh.setLevel( logging_level )
+        
+        frmt = logging.Formatter('%(asctime)s %(levelname)s %(message)s' )
+        fh.setFormatter(frmt)
+        
+        self.lgr.addHandler(fh)
+        self.lgr.debug(' : NEW RUN \n ')
+        
+        for n in self.statistics: # azzero statistiche 
+            self.statistics[n]=[]
+            
+        simpy.Environment.run( self , until )
+        
+    
