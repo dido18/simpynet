@@ -34,7 +34,7 @@ The simulator doesn't provide a GUI (such different simulator of networks as GNS
 1. [Download the  archive of the latest release X.Y](https://github.com/dido18/spn/releases)
 2. Unack the archive name `simpynet-X.Y.tar.gz` (or `zip`) and will unpack into a directory `simpynet-x.y`
 3. Create a virtualenv and activate it with the command ``` source /path_to_venv/bin/activate ```
-4. run the command ```python setup.py install ```
+4. Enter in the `simpynet-x.y` directory and run the command ```python setup.py install ```
 
 
 # Write the first simulation
