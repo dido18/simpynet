@@ -39,7 +39,9 @@ The simulator doesn't provide a GUI (such different simulator of networks as GNS
 
 # Write the first simulation
 --------------------------
-This program simulate a DHCP clinet and DHCP server interaction
+This program simulate a DHCP client and DHCP server interaction: the client asks for an IP address and the server will send the rigth one.
+
+Create a new file called `prova.py` and paste inside the followed code.
 ```
 import simpynet as spn
 
@@ -84,7 +86,7 @@ def DHCP_network( env ):
     env.process( funct())
 ```
 
-For running the simulation:
+Add this three line of code for running the simulation at the end of the file.
 
 ```
 e=spn.Environment()                 # create a new Environment
@@ -92,4 +94,6 @@ e.add_network(DHCP_network)         # add the network to the environment
 e.run( 1, spn.__TRANSPORT_LOG_N__)  #run the simulation, and save the log information up to Transort level
 ```
 
+* Open the terminal and run ``` python prova.py ```
+* Look in the same level wher the  file  `prova.py` is. There is a file named `simpynet_log` where the logging information of the simulation are stored. 
 
