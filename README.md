@@ -1,15 +1,24 @@
 
 
-#SymPyNet (spn) a simulator supporting computer networks teaching.
+# SymPyNet 
+### A simulator for any level mechanism in the TCP/IP model.
+===========================================================
 
-The name SimPyNet is a composizion of three words that characterise the project:
-	- Simulator
-	- Python
- 	- Network
-SimPyNet is a framework for the simulation of computer networks totally written in Python.
-The simulation in SimPyNet is done by  DES ( Discrete-Event-Simulation) model simulation.
+Description of the project
+--------------------------
+
+SimPyNet is a composition of three words that characterise the project
+
+1. Simulator
+2. Python
+3. Network
+
+`simpynet` is a framework totally written in `Python`,it is able to simulate the mechanism at any level of the TCP/IP model in a network ( physical, link,network,transport,application).
+
+The simulation is done by  the model DES (Discrete-Event-Simulation).
 The simulator doesn't provide a GUI (such different simulator of networks as GNS3,OMNeT++).
-Wwith it is possible to define small networks in all the intenet protocol suit ( physical, link,network,transport,application)
-and experiment the execution with differetn values.
-SimPyNet provides olso a mechanism of Log of the execution and Statistic analysis.
-It born  as support theaching for the course of computer network in the bachelor degree of Computer Science at Florence University.
+
+`simpynet` provides a `logging` mechanism  and collectors that collects data during the execution of a simulation in order to realize `statistical`  analysis.
+
+`simpynet` was born  as support theaching software for the course of Computer Network at university of Florence.
+
