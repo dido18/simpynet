@@ -1,4 +1,6 @@
- SymPyNet a simulator supporting teaching of computer networks 
+
+
+#SymPyNet (spn) a simulator supporting computer networks teaching.
 
 The name SimPyNet is a composizion of three words that characterise the project:
 	- Simulator
@@ -11,4 +13,3 @@ Wwith it is possible to define small networks in all the intenet protocol suit (
 and experiment the execution with differetn values.
 SimPyNet provides olso a mechanism of Log of the execution and Statistic analysis.
 It born  as support theaching for the course of computer network in the bachelor degree of Computer Science at Florence University.
-
