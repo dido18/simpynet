@@ -44,7 +44,7 @@ This program simulate a DHCP clinet and DHCP server interaction
 import simpynet as spn
 
 
-def DHCP( env ):
+def DHCP_network( env ):
 
     """
     |dhcp_client|------link 1------ |dhcp_server|
@@ -83,4 +83,13 @@ def DHCP( env ):
 
     env.process( funct())
 ```
+
+For running the simulation:
+
+```
+e=spn.Environment()                 # create a new Environment
+e.add_network(DHCP_network)         # add the network to the environment
+e.run( 1, spn.__TRANSPORT_LOG_N__)  #run the simulation, and save the log information up to Transort level
+```
+
 
