@@ -3,6 +3,9 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+#simpynet log
+*simpynet_log
+
 # C extensions
 *.so
 

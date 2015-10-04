@@ -5,7 +5,7 @@ Created on Mon May 19 18:20:20 2014
 @author: unkown
 """
 
-#import SimPyNet as spn
+#import simpynet as spn
 import spn
 
 
